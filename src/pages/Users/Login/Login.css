@@ -1,0 +1,19 @@
+.Login-Form {
+    font-size: 1.2rem;
+    border: 3px ridge yellow;
+    box-shadow: 5px 5px 5px yellow;
+}
+
+.Login-Form input {
+    background-color: rgba(255, 255, 255, 0.2);
+    outline: none;
+    border: 0;
+    border-radius: 5px;
+    padding: 5px;
+    color: inherit;
+    border-bottom: 1px solid yellow;
+}
+.Login-Form input:invalid + #EntryError::after {
+    content: "Please enter a valid Entry number.";
+    color: red;
+}

@@ -1,0 +1,19 @@
+.LoadingText::after{
+    content: "";
+    animation: Increase 1s ease-in infinite;
+}
+
+@keyframes Increase {
+    0%{
+        content: "";
+    }
+    33%{
+        content: ".";
+    }
+    66%{
+        content: "..";
+    }
+    100%{
+        content: "...";
+    }
+}

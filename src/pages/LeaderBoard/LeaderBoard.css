@@ -1,0 +1,29 @@
+.LeaderBoard table tr {
+    margin: 15px;
+}
+
+.LeaderBoard table tr td {
+    padding: 10px;
+    border: 1px solid black;
+    margin: 10px;
+}
+
+.LeaderBoard table tr td:first-child {
+    text-align: center;
+}
+
+.LeaderBoard table tr td:last-child {
+    text-align: right;
+}
+
+.LeaderBoard table tr:first-child {
+    background-color: bisque;
+}
+
+.LeaderBoard table tr:last-child:not(:first-child) td:first-child {
+    border-bottom-left-radius: 10px;
+}
+
+.LeaderBoard table tr:last-child:not(:first-child) td:last-child {
+    border-bottom-right-radius: 10px;
+}

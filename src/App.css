@@ -1,0 +1,33 @@
+#root {
+  background-color: rgb(30, 30, 63);
+  color: #fff35f;
+  min-height: 100vh;
+  position: relative;
+  padding-top: 70px;
+}
+
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+
+::-webkit-scrollbar-track {
+  /* background-color: rgb(43, 43, 93); */
+  background-color: rgb(30, 30, 63);
+}
+
+::-webkit-scrollbar-thumb {
+  background-color: #fff35f;
+  border-radius: 3px
+}
+
+input:-webkit-autofill {
+  background-color: transparent;
+  color: inherit;
+}
+
+input:-webkit-autofill:hover,
+input:-webkit-autofill:focus {
+  background-color: transparent;
+  color: inherit;
+}

@@ -1,0 +1,11 @@
+.WorkshopForm input:not([type=file]),.WorkshopForm textarea{
+    background-color: rgba(255, 255, 255, 0.3);
+    color: unset;
+    padding: 5px;
+    width: 100%;
+}
+.WorkshopForm *::-webkit-input-placeholder{
+    color: #bab36b;
+    font-size: 1.2rem;
+    text-align: center;
+}

@@ -1,0 +1,205 @@
+.brandLogo {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  width: fit-content;
+}
+
+.links {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+  padding: 0 50px;
+}
+
+@media screen and (max-width: 580px) {
+  .links {
+    padding: 0 20px;
+  }
+}
+
+.SidePanel {
+  position: fixed;
+  top: 0;
+  left: 0;
+  background: rgba(0, 0, 0, 0.5);
+  min-width: 250px;
+  height: 100vh;
+  z-index: 100;
+  padding: 20px 0;
+  overflow-y: scroll;
+  text-align: center;
+  backdrop-filter: blur(6px);
+  box-sizing: border-box;
+  transition: left 0.5s ease-in-out;
+}
+
+.BodyBlur {
+  width: 100%;
+  height: 100%;
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 99;
+  backdrop-filter: blur(1px) opacity(0);
+  transition: backdrop-filter 0.1s linear;
+}
+
+.SidePannel-NavBar {
+  height: 60px;
+  background-color: purple;
+  width: 100%;
+  padding: 10px 50px;
+  box-sizing: border-box;
+  align-items: center;
+  display: flex;
+  justify-content: space-between;
+}
+
+.navButton {
+  background-color: #efc36a;
+  color: black;
+  text-decoration: none;
+  padding: 3px 10px;
+  border-radius: 5px;
+  outline: 0;
+  border: 0;
+}
+
+.navButton:hover {
+  background-color: #ffee31;
+}
+.links .active {
+  background-color: #ffee31;
+}
+
+@media screen and (max-width: 580px) {
+  .content-to-hide {
+    display: none;
+  }
+}
+@media screen and (min-width: 580px) {
+  .content-to-hide2 {
+    display: none;
+  }
+}
+
+#Template-RDV-Logo {
+  width: 90%;
+  max-width: 250px;
+}
+
+.TemplateLinks {
+  font-size: 1.3rem;
+  margin: 0 auto;
+  margin-top: 30px;
+  width: fit-content;
+  position: relative;
+  z-index: 10;
+}
+
+.TemplateLinks ul {
+  text-align: center;
+  width: fit-content;
+  padding: 0;
+}
+
+.TemplateLinks li {
+  text-align: left;
+  list-style: none;
+  margin: 15px 0;
+  color: white;
+}
+
+.TemplateLinks li a {
+  align-items: first baseline;
+  color: unset;
+  font-family: Sansita;
+  text-decoration: none;
+}
+
+.TemplateLinks .active {
+  color: #fff35f;
+}
+
+.TemplateLinks li img {
+  width: 1.3rem;
+  margin: 0;
+  margin-right: 1rem;
+  color: yellow;
+}
+
+.SidePannel-toggle-Btn {
+  display: block;
+  text-align: left;
+  margin: 20px 25px;
+  margin-top: 0;
+}
+
+#tooglebtn {
+  margin-right: 20px;
+}
+
+.SidePanel::-webkit-scrollbar {
+  width: 3px;
+}
+
+.SidePanel::-webkit-scrollbar-thumb {
+  background-color: rgb(239, 195, 106);
+  border-radius: 1.5px;
+}
+
+.SidePanel::-webkit-scrollbar-track {
+  background-color: transparent;
+}
+
+.SidePanel::-webkit-scrollbar-thumb:hover {
+  background-color: yellow;
+}
+
+.shifted-right {
+  margin-left: "auto";
+}
+
+#rdv-txt {
+  font-family: "Bebas Neue", sans-serif;
+  color: #efc36a;
+  font-size: 35px;
+}
+
+#rdv-txt-container {
+  display: flex;
+  justify-content: center;
+  align-content: center;
+  height: 16px;
+}
+
+@media (max-width: 1024px) {
+  #rdv-txt-container {
+    height: 16px;
+  }
+
+  #rdv-txt {
+    font-size: 35px;
+  }
+}
+
+.links {
+  display: flex;
+}
+
+#links-left {
+  display: flex;
+  justify-content: center;
+  align-content: center;
+  align-items: center;
+  height: 50px;
+}
+
+#links-right {
+  display: flex;
+  justify-content: center;
+  align-content: center;
+  align-self: center;
+  height: 50px;
+}

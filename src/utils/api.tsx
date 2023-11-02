@@ -1,7 +1,10 @@
 import axios from 'axios'
 const getUrl = () => {
     if (window.location.hostname === "localhost") {
-        return `http://${window.location.host.replace("3000", "8000")}`
+        return `http://localhost:8000`
+    }
+    else if (window.location.hostname.endsWith("vercel.app")) {
+        return "https://projekt-x-api.vercel.app"
     }
     else if(window.location.hostname.endsWith("vercel.app")){
         return "https://projekt-x-api.vercel.app"
@@ -11,6 +14,7 @@ const getUrl = () => {
     }
 }
 const API_BASE = getUrl()
+// const API_BASE = "https://projekt-x-api.vercel.app"
 const GCAPTCHA_SITE_KEY = "6LdiWbcoAAAAADl6Ak1F6cBTXQURwVKKufqPtOrB"
 
 const JWT_KEY = "session_key"
@@ -35,14 +39,10 @@ const getHeaders = () => {
 }
 
 const LoginGaurd = async (navigate: Function, next: string | null = null) => {
-    if (!getJWT() && !checkREF()) {
-        navigate(next ? `/login?next=${next}` : "/login", { replace: true })
-        return
-    }
     if (getJWT()) {
-        await Profile()
+        Profile()
     }
-    if (!getJWT()) {
+    if ((!getJWT()) && getREF()) {
         let success = await RefreshToken()
         if (success) {
             window.location.reload()
@@ -51,7 +51,12 @@ const LoginGaurd = async (navigate: Function, next: string | null = null) => {
             navigate(next ? `/login?next=${next}` : "/login", { replace: true });
         }
     }
+    if (!getJWT() && !checkREF()) {
+        navigate(next ? `/login?next=${next}` : "/login", { replace: true })
+        return
+    }
 }
+
 const RefreshToken = async () => {
     let success = false
     await axios.post(`${API_BASE}/users/token/refresh/`, { refresh: getREF() })
@@ -60,12 +65,12 @@ const RefreshToken = async () => {
                 setJWT(response.data.access)
                 success = true
             }
-            if (response.status === 400) {
+            if (response.status === 400 || response?.status === 401) {
                 delJWT()
                 delREF()
             }
         }).catch(error => {
-            if (error.response?.status === 400 || error.response?.status === 404) {
+            if (error.response?.status === 400 || error.response?.status === 404 || error.response?.status === 401) {
                 delJWT()
                 delREF()
             }
@@ -73,7 +78,7 @@ const RefreshToken = async () => {
         })
     return success
 }
-const Profile = async () => {
+const Profile = () => {
     let headersList = getHeaders()
     const reqOptions = {
         url: `${API_BASE}/users/token/validate/`,
@@ -81,7 +86,7 @@ const Profile = async () => {
         method: "POST",
     }
     let real = null
-    await axios.request(reqOptions)
+    axios.request(reqOptions)
         .then(response => {
             return response
         }).catch(error => {

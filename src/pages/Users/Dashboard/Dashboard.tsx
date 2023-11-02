@@ -36,8 +36,11 @@ function Dashboard() {
     const navigate = useNavigate()
     const [profile, setProfile] = useState<Profile | null>(null)
     const [fetching, setFetching] = useState(true)
+
+    LoginGaurd(navigate)
+
+    const [isSubmitting, setSubmitting] = useState(false)
     useEffect(() => {
-        LoginGaurd(navigate)
         window.scrollTo(0, 0)
         setFetching(true)
         let headersList = {
@@ -76,7 +79,7 @@ function Dashboard() {
         if (selectedPhoto === null) { return alert("Select Photo to be updated.") }
         const formdata = new FormData();
         formdata.append("profile_photo", selectedPhoto);
-
+        setSubmitting(true)
         axios.post(`${API_BASE}/users/update_profile_photo/`, formdata, {
             headers: {
                 Authorization: `Bearer ${getJWT()}`
@@ -90,6 +93,8 @@ function Dashboard() {
                 else {
                     console.log(response)
                 }
+                setSelectedPhoto(null)
+                setSubmitting(false)
             }).catch(error => {
                 if (error.response?.status === 401) {
                     if (error.response.code === "token_not_valid") {
@@ -98,6 +103,8 @@ function Dashboard() {
                     }
                 }
                 console.log(error)
+                setSubmitting(false)
+                setSelectedPhoto(null)
             })
     }
 
@@ -156,7 +163,7 @@ function Dashboard() {
                                         </Modal.Body>
                                         <Modal.Footer style={{ backgroundColor: "purple" }}>
                                             <Button variant='light' onClick={handleModalClose}>Cancel</Button>
-                                            <Button variant='primary' onClick={handleUpdate} disabled={selectedPhoto === null}>Update</Button>
+                                            <Button variant='primary' onClick={handleUpdate} disabled={selectedPhoto === null || isSubmitting}>Update</Button>
                                         </Modal.Footer>
                                     </Modal>
                                 </div>

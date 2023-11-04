@@ -22,7 +22,7 @@ function Login() {
         return formatPattern.test(entry)
     }
 
-    const [formData, setFormData] = useState({ entry: "", password: "" })
+    const [formData, setFormData] = useState({ username: "", password: "" })
     const [isSubmitting, setSubmitting] = useState(false)
 
     const handleChange = (e: any) => {
@@ -95,9 +95,9 @@ function Login() {
                     <div className='d-flex flex-column w-100 pb-1 px-4 mx-auto text-start' style={{ maxWidth: "400px" }}>
                         <h2 className='text-center mt-0 mb-3'>Login</h2>
                         <label htmlFor="entry">Username (Entry):</label>
-                        <input type="text" className={validateEntry(formData.entry) || formData.entry === "" ? "my-3" : "mt-3"} onChange={handleChange}
-                            value={formData.entry} name='entry' placeholder='Username' title='Username' required />
-                        {!validateEntry(formData.entry) && formData.entry !== "" && <span className='mb-3' id='EntryError' style={{ fontSize: "1rem", color: "red" }}></span>}
+                        <input type="text" className={validateEntry(formData.username) || formData.username === "" ? "my-3" : "mt-3"} onChange={handleChange}
+                            value={formData.username} name='username' placeholder='Username' title='Username' required />
+                        {!validateEntry(formData.username) && formData.username !== "" && <span className='mb-3' id='EntryError' style={{ fontSize: "1rem", color: "red" }}></span>}
                         <label htmlFor="password">Password:</label>
                         <input type="password" className='my-3' onChange={handleChange}
                             value={formData.password} name='password' placeholder='Password' title='Password' required />
@@ -108,7 +108,7 @@ function Login() {
 
                     <div className='d-flex flex-column w-100 py-2 mx-auto px-4 text-start' style={{ maxWidth: "400px" }}>
                         <button className='btn btn-primary w-50 mx-auto'
-                            disabled={formData.entry == "" || formData.password == "" || isSubmitting}>
+                            disabled={formData.username == "" || formData.password == "" || isSubmitting}>
                             {isSubmitting ? "Logging in..." : "Login"}
                         </button>
                     </div>
@@ -117,7 +117,7 @@ function Login() {
 
                 <div className='d-flex flex-column w-100 pb-5 mx-auto px-4 text-start' style={{ maxWidth: "400px" }}>
                     <p className='text-center fs-6'>Dont have account?</p>
-                    <NavLink to={'/register'} className='mx-auto w-50'>
+                    <NavLink to={'/register'} replace={true} className='mx-auto w-50'>
                         <button className='btn btn-secondary w-100 mx-auto'>
                             Register Here
                         </button>

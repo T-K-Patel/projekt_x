@@ -4,7 +4,7 @@ const getUrl = () => {
         return `http://localhost:8000`
     }
     else if (window.location.hostname.endsWith("vercel.app")) {
-        return "https://projekt-x-api.vercel.app"
+        return "https://projekt-x-backend.vercel.app"
     }
     else if(window.location.hostname.endsWith("vercel.app")){
         return "https://projekt-x-api.vercel.app"
@@ -63,9 +63,10 @@ const RefreshToken = async () => {
         .then(response => {
             if (response.status === 200) {
                 setJWT(response.data.access)
+                window.location.reload()
                 success = true
             }
-            if (response.status === 400 || response?.status === 401) {
+            if (response.status === 400 || response.status === 401) {
                 delJWT()
                 delREF()
             }

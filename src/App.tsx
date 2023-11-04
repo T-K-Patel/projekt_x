@@ -1,7 +1,7 @@
 import React from 'react'
 import './App.css'
 import 'bootstrap/dist/css/bootstrap.css'
-import { BrowserRouter, Routes, Route, useParams } from 'react-router-dom'
+import { BrowserRouter, Routes, Route, useParams, NavLink } from 'react-router-dom'
 import Login from './pages/Users/Login/Login'
 import Home from './pages/Home/Home'
 import AddWorkshop from './pages/Workshops/addWorkshop/AddWorkshopForm'
@@ -31,25 +31,35 @@ function WRKSP_tag() {
     </div>
   )
 }
-
+function Error404() {
+  return (
+    <>
+      <div className='text-center pt-5'>
+        <h1>Error 404</h1>
+        <p>Requested Page not found.</p>
+        <NavLink to="/" replace={true} className="btn btn-info ">Go to Home</NavLink>
+      </div>
+    </>)
+}
 
 function App() {
   return (
     <BrowserRouter>
       <NavBar />
-      <Routes>
+      <div style={{minHeight:"50vh"}}><Routes>
         <Route path='/' element={<Home />} />
         <Route path='/login' element={<Login />} />
         <Route path='/register' element={<Registration />} />
         <Route path='/verify' element={<Verification />} />
         <Route path='/dashboard' element={<Dashboard />} />
-        <Route path='/workshops' element={<Workshops />} />
-        <Route path='/workshops/add' element={<AddWorkshop />} />
-        <Route path='/workshop/:id' element={<Workshop />} />
-        <Route path='/workshops/:tag' element={<WRKSP_tag />} />
-        <Route path='/leaderboard' element={<LeaderBoard />} />
+        {/* <Route path='/workshops' element={<Workshops />} />
+        <Route path='/workshops/add' element={<AddWorkshop />} /> */}
+        {/* <Route path='/workshop/:id' element={<Workshop />} />
+        <Route path='/workshops/:tag' element={<WRKSP_tag />} /> */}
+        {/* <Route path='/leaderboard' element={<LeaderBoard />} /> */}
         <Route path='/query' element={<Querry />} />
-      </Routes>
+        <Route path='*' element={<Error404 />} />
+      </Routes></div>
       <Footer />
     </BrowserRouter>
   )

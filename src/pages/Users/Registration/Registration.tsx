@@ -5,6 +5,45 @@ import { NavLink, useNavigate } from 'react-router-dom'
 import axios from 'axios'
 import { json } from 'stream/consumers'
 
+const States = [
+    "Andhra Pradesh",
+    "Arunachal Pradesh",
+    "Assam",
+    "Bihar",
+    "Chhattisgarh",
+    "Goa",
+    "Gujarat",
+    "Haryana",
+    "Himachal Pradesh",
+    "Jharkhand",
+    "Karnataka",
+    "Kerala",
+    "Madhya Pradesh",
+    "Maharashtra",
+    "Manipur",
+    "Meghalaya",
+    "Mizoram",
+    "Nagaland",
+    "Odisha",
+    "Punjab",
+    "Rajasthan",
+    "Sikkim",
+    "Tamil Nadu",
+    "Telangana",
+    "Tripura",
+    "Uttarakhand",
+    "Uttar Pradesh",
+    "West Bengal",
+    "Andaman and Nicobar Islands",
+    "Chandigarh",
+    "Dadra and Nagar Haveli",
+    "Daman & Diu",
+    "Delhi",
+    "Jammu & Kashmir",
+    "Ladakh",
+    "Lakshadweep",
+    "Puducherry"
+]
 
 function Registration() {
     const navigate = useNavigate()
@@ -20,11 +59,12 @@ function Registration() {
 
     const validateFormData = (formData: any) => {
         return !(
-            formData.entry === "" ||
+            formData.username === "" ||
             formData.password === "" ||
             formData.cpassword === "" ||
             formData.name === "" ||
             formData.mobile === "" ||
+            formData.dob === "" ||
             formData.email === "" ||
             formData.state === "" ||
             formData.mobile.length !== 10 ||
@@ -32,7 +72,7 @@ function Registration() {
         )
     }
 
-    const [formData, setFormData] = useState({ entry: "", password: "", cpassword: "", state: "", mobile: "", name: "", email: "" })
+    const [formData, setFormData] = useState({ username: "", password: "", cpassword: "", dob: "", state: "", mobile: "", name: "", email: "" })
     const [isSubmitting, setSubmitting] = useState(false)
 
     const handleChange = (e: any) => {
@@ -56,6 +96,7 @@ function Registration() {
     const handleSubmit = (e: any) => {
         e.preventDefault()
         setSubmitting(true)
+        console.log(formData)
         //@ts-ignore
         const captcha = window.grecaptcha.getResponse();
         if (!captcha) {
@@ -80,7 +121,7 @@ function Registration() {
 
         axios.request(reqOptions)
             .then(response => {
-                if (response.status === 200) {
+                if (response.status === 200 &&  response.data.entry &&  response.data.token) {
                     localStorage.setItem("entry", response.data.entry)
                     localStorage.setItem("iron_key", response.data.token)
                     navigate("/verify", { replace: true })
@@ -111,9 +152,9 @@ function Registration() {
                 <form onSubmit={handleSubmit} className=' d-flex flex-column gap-2 justify-content-center col-md-6 col-lg-4 col-11 text-center pt-4 mx-4' style={{ maxWidth: "450px", minWidth: "320px" }}>
                     <div className='d-flex flex-column w-100 pb-1 px-4 mx-auto text-start' style={{ maxWidth: "400px" }}>
                         <h2 className='text-center mt-0 mb-3'>Register</h2>
-                        <label htmlFor="entry">Username (Entry):</label>
+                        <label htmlFor="entry">Username:</label>
                         <input type="text" className={"my-2"} onChange={handleChange}
-                            value={formData.entry} name='entry' placeholder='Username' title='Username' required />
+                            value={formData.username} name='username' placeholder='Username' title='Username' required />
 
                         <label htmlFor="name">Name:</label>
                         <input type="text" className={"my-2"} onChange={handleChange}
@@ -127,9 +168,17 @@ function Registration() {
                         <input type="tel" className={"my-2"} onChange={handleChange}
                             value={formData.mobile} name='mobile' placeholder='Mobile' title='Mobile' required />
 
+                        <label htmlFor="dob">Date of Birth:</label>
+                        <input type="date" className={"my-2"} onChange={handleChange}
+                            value={formData.dob} name='dob' title='dob' required/>
+
                         <label htmlFor="entry">State:</label>
-                        <input type="text" className={"my-2"} onChange={handleChange}
-                            value={formData.state} name='state' placeholder='State' title='State' required />
+                        <select name="state" className='my-2' id="state" onChange={handleChange} required>
+                            <option value="" disabled selected={formData.state === ""}>--Select State--</option>
+                            {States.map(state => {
+                                return (<option value={state} selected={formData.state === state} key={state}>{state}</option>)
+                            })}
+                        </select>
 
                         <label htmlFor="password">Password:</label>
                         <input type="password" className={"my-2"} onChange={handleChange}
@@ -155,7 +204,7 @@ function Registration() {
 
                 <div className='d-flex flex-column w-100 pb-5 mx-auto px-4 text-start' style={{ maxWidth: "400px" }}>
                     <p className='text-center fs-6'>Already have account?</p>
-                    <NavLink to={'/login'} className='mx-auto w-50'>
+                    <NavLink to={'/login'} replace={true} className='mx-auto w-50'>
                         <button className='btn btn-secondary w-100 mx-auto'>
                             Login
                         </button>

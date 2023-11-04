@@ -15,6 +15,7 @@ import Footer from './components/Footer/Footer'
 import Registration from './pages/Users/Registration/Registration'
 import Verification from './pages/Users/Registration/Verificaton'
 import ForgotPass from './pages/Users/Password/ForgotPass'
+import Team from './pages/Team/Team'
 
 function WRKSP() {
   const { id } = useParams()
@@ -55,6 +56,7 @@ function App() {
           <Route path='/verify' element={<Verification />} />
           <Route path='/forgotpassword' element={<ForgotPass />} />
           <Route path='/dashboard' element={<Dashboard />} />
+          <Route path='/team' element={<Team />} />
           {/* <Route path='/workshops' element={<Workshops />} />
           <Route path='/workshops/add' element={<AddWorkshop />} />
           <Route path='/workshop/:id' element={<Workshop />} />

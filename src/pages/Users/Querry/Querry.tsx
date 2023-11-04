@@ -1,9 +1,16 @@
 import React, { FormEvent, useEffect, useState } from 'react'
-import { API_BASE, getHeaders } from '../../../utils/api'
+import { API_BASE, LoginGaurd, checkJWT, getHeaders } from '../../../utils/api'
 import axios from 'axios'
+import { useNavigate } from 'react-router-dom'
 
 function Querry() {
   const [query, setQuery] = useState({ subject: "", message: "" })
+  const navigate = useNavigate()
+
+  useEffect(() => {
+    LoginGaurd(navigate, "/query")
+
+  }, [])
   const [isSubmitting, setSubmitting] = useState(false)
   const handleChange = (e: any) => {
     const { name, value } = e.target
@@ -39,7 +46,7 @@ function Querry() {
   }
   const [querry, setQuerry] = useState([])
   useEffect(() => {
-    const reqOptions = {
+    if (checkJWT()){const reqOptions = {
       url: `${API_BASE}/users/query/`,
       method: "GET",
       headers: getHeaders(),
@@ -54,8 +61,8 @@ function Querry() {
       alert("Error: " + error.response?.status)
       console.log(error);
 
-    })
-  },[])
+    })}
+  }, [])
   return (
     <div>
       {querry.map((q: any, ind) => { return <div key={ind}><h3>{q.subject}</h3><p>{q.message}</p></div> })}

@@ -154,23 +154,23 @@ function NavBar() {
 							</NavLink>
 						</li>
 						<li>
-							<NavLink onClick={hidePannel} to="/gallery">
+							<NavLink onClick={hidePannel} to="/dashboard">
 								{/* <img src={GalleryImg} alt="Home" /> */}
-								Gallery
+								Dashboard
 							</NavLink>
 						</li>
-						<li>
+						{/* <li>
 							<NavLink onClick={hidePannel} to="/workshops">
-								{/* <img src={EventsImg} alt="Home" /> */}
+								<img src={EventsImg} alt="Home" />
 								Workshops
 							</NavLink>
-						</li>
-						<li>
+						</li> */}
+						{/* <li>
 							<NavLink onClick={hidePannel} to="/faq">
-								{/* <img src={FAQs} alt="Home" /> */}
+								<img src={FAQs} alt="Home" />
 								FAQs
 							</NavLink>
-						</li>
+						</li> */}
 						<li>
 							<NavLink onClick={hidePannel} to="/team">
 								{/* <img src={Team} alt="Home" /> */}
@@ -183,12 +183,12 @@ function NavBar() {
 								Query
 							</NavLink>
 						</li>
-						<li>
+						{/* <li>
 							<NavLink onClick={hidePannel} to="/aboutus">
-								{/* <img src={AboutImg} alt="Home" /> */}
+								<img src={AboutImg} alt="Home" />
 								About Us
 							</NavLink>
-						</li>
+						</li> */}
 					</ul>
 				</div>
 			</div>

@@ -101,6 +101,7 @@ function Login() {
                         <label htmlFor="password">Password:</label>
                         <input type="password" className='my-3' onChange={handleChange}
                             value={formData.password} name='password' placeholder='Password' title='Password' required />
+                        <a href="/forgotpassword" className='text-end '><h6>Forgot Password?</h6></a>
                     </div>
 
                     {/* reCaptcha */}

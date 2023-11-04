@@ -121,19 +121,19 @@ function Registration() {
 
         axios.request(reqOptions)
             .then(response => {
-                if (response.status === 200 &&  response.data.entry &&  response.data.token) {
-                    localStorage.setItem("entry", response.data.entry)
+                if (response.status === 200 &&  response.data.username &&  response.data.token) {
+                    localStorage.setItem("username", response.data.username)
                     localStorage.setItem("iron_key", response.data.token)
                     navigate("/verify", { replace: true })
                 }
                 else {
                     console.log(response)
-                    alert(response.data.detail)
+                    alert(response.data.detail || "Some error occured. Let developer fix it.")
                 }
                 setSubmitting(false)
             }).catch(error => {
                 if (error.response?.status === 400) {
-                    alert(JSON.stringify(error.response.data?.detail) || error.response.data?.entry || error.response.data?.password || "Some error occured. Let Developer Fix it.")
+                    alert(JSON.stringify(error.response.data?.detail) || error.response.data?.username || error.response.data?.password || "Some error occured. Let developer fix it.")
                 }
                 else if (error.response?.status === 401) { alert("Invalid Captcha!!") }
                 else if (error.response?.status === 404) { alert("User not Found!") }

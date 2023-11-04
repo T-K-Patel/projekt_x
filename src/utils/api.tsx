@@ -6,15 +6,12 @@ const getUrl = () => {
     else if (window.location.hostname.endsWith("vercel.app")) {
         return "https://projekt-x-backend.vercel.app"
     }
-    else if(window.location.hostname.endsWith("vercel.app")){
-        return "https://projekt-x-api.vercel.app"
-    }
     else {
         return `http://${window.location.host.replace("3000", "8000")}`
     }
 }
 const API_BASE = getUrl()
-// const API_BASE = "https://projekt-x-api.vercel.app"
+// const API_BASE = "https://projekt-x-backend.vercel.app"
 const GCAPTCHA_SITE_KEY = "6LdiWbcoAAAAADl6Ak1F6cBTXQURwVKKufqPtOrB"
 
 const JWT_KEY = "session_key"

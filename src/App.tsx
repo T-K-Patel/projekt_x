@@ -47,21 +47,23 @@ function App() {
   return (
     <BrowserRouter>
       <NavBar />
-      <div style={{minHeight:"50vh"}}><Routes>
-        <Route path='/' element={<Home />} />
-        <Route path='/login' element={<Login />} />
-        <Route path='/register' element={<Registration />} />
-        <Route path='/verify' element={<Verification />} />
-        <Route path='/forgotpassword' element={<ForgotPass />} />
-        <Route path='/dashboard' element={<Dashboard />} />
-        {/* <Route path='/workshops' element={<Workshops />} />
-        <Route path='/workshops/add' element={<AddWorkshop />} /> */}
-        {/* <Route path='/workshop/:id' element={<Workshop />} />
-        <Route path='/workshops/:tag' element={<WRKSP_tag />} /> */}
-        {/* <Route path='/leaderboard' element={<LeaderBoard />} /> */}
-        <Route path='/query' element={<Querry />} />
-        <Route path='*' element={<Error404 />} />
-      </Routes></div>
+      <div style={{ minHeight: "50vh" }}>
+        <Routes>
+          <Route path='/' element={<Home />} />
+          <Route path='/login' element={<Login />} />
+          <Route path='/register' element={<Registration />} />
+          <Route path='/verify' element={<Verification />} />
+          <Route path='/forgotpassword' element={<ForgotPass />} />
+          <Route path='/dashboard' element={<Dashboard />} />
+          {/* <Route path='/workshops' element={<Workshops />} />
+          <Route path='/workshops/add' element={<AddWorkshop />} />
+          <Route path='/workshop/:id' element={<Workshop />} />
+          <Route path='/workshops/:tag' element={<WRKSP_tag />} />
+          <Route path='/leaderboard' element={<LeaderBoard />} /> */}
+          <Route path='/query' element={<Querry />} />
+          <Route path='*' element={<Error404 />} />
+        </Routes>
+      </div>
       <Footer />
     </BrowserRouter>
   )

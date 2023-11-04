@@ -121,15 +121,11 @@ function Registration() {
 
         axios.request(reqOptions)
             .then(response => {
-                if (response.status === 200 &&  response.data.username &&  response.data.token) {
-                    localStorage.setItem("username", response.data.username)
-                    localStorage.setItem("iron_key", response.data.token)
-                    navigate("/verify", { replace: true })
-                }
-                else {
-                    console.log(response)
-                    alert(response.data.detail || "Some error occured. Let developer fix it.")
-                }
+
+                if (response.data.username) { localStorage.setItem("username", response.data.username) }
+                if (response.data.token) { localStorage.setItem("iron_key", response.data.token) }
+                console.log(response)
+                navigate("/verify", { replace: true })
                 setSubmitting(false)
             }).catch(error => {
                 if (error.response?.status === 400) {
@@ -170,7 +166,7 @@ function Registration() {
 
                         <label htmlFor="dob">Date of Birth:</label>
                         <input type="date" className={"my-2"} onChange={handleChange}
-                            value={formData.dob} name='dob' title='dob' required/>
+                            value={formData.dob} name='dob' title='dob' required />
 
                         <label htmlFor="entry">State:</label>
                         <select name="state" className='my-2' id="state" onChange={handleChange} required>

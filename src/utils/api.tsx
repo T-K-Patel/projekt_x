@@ -90,6 +90,7 @@ const Profile = () => {
         }).catch(error => {
             if (error.response?.status === 401 || error.response?.status === 403) {
                 delJWT()
+                window.location.reload()
             }
             console.log(error)
         })

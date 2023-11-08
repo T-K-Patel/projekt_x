@@ -16,23 +16,8 @@ import Registration from './pages/Users/Registration/Registration'
 import Verification from './pages/Users/Registration/Verificaton'
 import ForgotPass from './pages/Users/Password/ForgotPass'
 import Team from './pages/Team/Team'
+import { inject } from '@vercel/analytics';
 
-function WRKSP() {
-  const { id } = useParams()
-  return (
-    <div>
-      <h1>Id: {id}</h1>
-    </div>
-  )
-}
-function WRKSP_tag() {
-  const { tag } = useParams()
-  return (
-    <div>
-      <h1>Tag: {tag}</h1>
-    </div>
-  )
-}
 function Error404() {
   return (
     <>
@@ -45,6 +30,7 @@ function Error404() {
 }
 
 function App() {
+  inject()
   return (
     <BrowserRouter>
       <NavBar />

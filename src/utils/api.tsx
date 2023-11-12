@@ -14,17 +14,17 @@ const API_BASE = getUrl()
 // const API_BASE = "https://projekt-x-backend.vercel.app"
 const GCAPTCHA_SITE_KEY = "6LdiWbcoAAAAADl6Ak1F6cBTXQURwVKKufqPtOrB"
 
-const JWT_KEY = "session_key"
-const getJWT = () => { return localStorage.getItem(JWT_KEY) }
-const delJWT = () => { return localStorage.removeItem(JWT_KEY) }
-const setJWT = (JWT: string) => { return localStorage.setItem(JWT_KEY, JWT) }
-const checkJWT = () => { return localStorage.getItem(JWT_KEY) !== null || checkREF() }
-
 const REF_KEY = "diamond_key"
 const getREF = () => { return localStorage.getItem(REF_KEY) }
 const setREF = (JWT: string) => { return localStorage.setItem(REF_KEY, JWT) }
 const delREF = () => { return localStorage.removeItem(REF_KEY) }
 const checkREF = () => { return localStorage.getItem(REF_KEY) !== null }
+
+const JWT_KEY = "session_key"
+const getJWT = () => { return localStorage.getItem(JWT_KEY) }
+const delJWT = () => { return localStorage.removeItem(JWT_KEY) }
+const setJWT = (JWT: string) => { return localStorage.setItem(JWT_KEY, JWT) }
+const checkJWT = () => { return localStorage.getItem(JWT_KEY) !== null || checkREF() }
 
 const getHeaders = () => {
     if (checkJWT()) {

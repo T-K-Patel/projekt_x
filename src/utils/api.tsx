@@ -1,4 +1,5 @@
 import axios from 'axios'
+const DEBUG = window.location.port === "3000"
 const getUrl = () => {
     if (window.location.hostname === "localhost") {
         return `http://localhost:8000`
@@ -7,11 +8,10 @@ const getUrl = () => {
         return "https://projekt-x-backend.vercel.app"
     }
     else {
-        return `http://${window.location.host.replace("3000", "8000")}`
+        return `http://${window.location.host.replace(window.location.port, "8000")}`
     }
 }
-const API_BASE = getUrl()
-// const API_BASE = "https://projekt-x-backend.vercel.app"
+const API_BASE = DEBUG ? getUrl() : "https://projekt-x-backend.vercel.app"
 const GCAPTCHA_SITE_KEY = "6LdiWbcoAAAAADl6Ak1F6cBTXQURwVKKufqPtOrB"
 
 const REF_KEY = "diamond_key"

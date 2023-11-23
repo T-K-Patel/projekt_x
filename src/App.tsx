@@ -49,7 +49,7 @@ interface UserData {
 const UserDataContext = createContext<UserData>({ profile: null, setProfile: (a) => { return a } });
 
 function App() {
-  // inject() 
+  inject() 
   const [profile, setProfile] = useState<Profile | null>(null)
 
   return (

@@ -66,11 +66,13 @@ const RefreshToken = async () => {
             if (response.status === 400 || response.status === 401) {
                 delJWT()
                 delREF()
+                window.location.reload()
             }
         }).catch(error => {
             if (error.response?.status === 400 || error.response?.status === 404 || error.response?.status === 401) {
                 delJWT()
                 delREF()
+                window.location.reload()
             }
             console.log(error)
         })
@@ -89,8 +91,11 @@ const Profile = () => {
             return response
         }).catch(error => {
             if (error.response?.status === 401 || error.response?.status === 403) {
-                delJWT()
-                window.location.reload()
+                if (checkREF()) { RefreshToken() }
+                else {
+                    delJWT()
+                    window.location.reload()
+                }
             }
             console.log(error)
         })

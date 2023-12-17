@@ -71,7 +71,7 @@ function Dashboard() {
     const handleUpdate = (e: any) => {
         e.preventDefault()
         if (selectedPhoto === null) { return alert("Select Photo to be updated.") }
-        if (selectedPhoto.size > 1024 * 1024 * 5) { return alert("File size should not exceed 5MB.") }
+        if (selectedPhoto.size > 1024 * 1024 * 3) { return alert("File size should not exceed 3MB.") }
         const formdata = new FormData();
         formdata.append("profile_photo", selectedPhoto);
         setSubmitting(true)
@@ -144,7 +144,7 @@ function Dashboard() {
                                                     setImageUrl(reader.result as string);
                                                 };
                                             }} />
-                                            <p>(Max 5 MB size allowed)</p>
+                                            <p>(Max 3 MB size allowed)</p>
                                             {selectedPhoto &&
                                                 <div className='mt-3 mb-0'>
                                                     <h4>Preview</h4>

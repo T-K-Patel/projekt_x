@@ -39,14 +39,20 @@ function Login() {
 
     const handleSubmit = (e: any) => {
         e.preventDefault()
-        setSubmitting(true)
-        //@ts-ignore
-        const captcha = window.grecaptcha.getResponse();
+        let captcha
+        try {
+            //@ts-ignore
+            captcha = window.grecaptcha.getResponse();
+        } catch (error) {
+            alert("reCaptcha not found.")
+            return
+        }
         if (!captcha) {
             alert("Fill reCaptcha to proceed.")
             setSubmitting(false)
             return
         }
+        setSubmitting(true)
         const reqOptions = {
             url: `${API_BASE}/users/login/`,
             method: "POST",
@@ -54,7 +60,7 @@ function Login() {
                 'Content-Type': 'application/json',
                 'captcha-response': captcha,
             },
-            data: formData,
+            data: formData
         }
         const urlParams = new URLSearchParams(window.location.search);
         const next = urlParams.get('next');
